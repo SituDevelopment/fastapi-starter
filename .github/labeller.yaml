@@ -1,0 +1,22 @@
+bug:
+  - head-branch: ["bug/*"]
+
+enhancement:
+  - head-branch: ["feature/*"]
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          ["package.json", "package-lock.json", "pyproject.toml", "requirements.txt"]
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ["README.md"]
+
+github_actions:
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/*.yaml"]
+
+python:
+  - changed-files:
+      - any-glob-to-any-file: ["*.py", "pyproject.toml", "requirements.txt"]
