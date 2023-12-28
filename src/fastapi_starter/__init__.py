@@ -9,12 +9,7 @@ from sqlalchemy.exc import NoResultFound
 
 load_dotenv()
 
-from .database import engine
-from .models import Base
 from .routers import auth, organisations, users
-
-Base.metadata.create_all(bind=engine)
-
 
 app = FastAPI(
     debug=getenv("DEBUG") == "True",

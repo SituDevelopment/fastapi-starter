@@ -26,8 +26,21 @@ In order to extend this starter for an application, perform the following action
     -   `InDatabase`
     -   `Updatable`
 5.  Define and include `FastAPI.APIRouter`s to the `fastapi_starter.app` application.
+6.  Create database tables with:
+
+    ```python
+    from fastapi_starter.database import engine
+    from fastapi_starter.models import Base
+
+
+    Base.metadata.create_all(bind=engine)
+    ```
 
 ## Components
 
 -   The [PyMySQL](https://pymysql.readthedocs.io/en/latest/) driver is used with [SQLAlchemy](https://www.sqlalchemy.org/) to provide a declarative interface between the FastAPI controllers and a MySQL database instance.
 -   The [FastAPI Another JWT Auth](https://glitchcorp.github.io/fastapi-another-jwt-auth/) plugin is used to provide JWT authentication to the FastAPI application.
+
+```
+
+```
