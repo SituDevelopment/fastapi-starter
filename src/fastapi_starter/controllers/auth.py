@@ -13,7 +13,7 @@ from fastapi_another_jwt_auth import AuthJWT
 from pydantic import SecretStr
 from sqlalchemy.orm import Session
 
-from ..dependencies.database import Database
+from ..dependencies.database import database
 from ..models.tokens import TokenModel
 from ..schemas.auth import *
 from ..schemas.tokens import TokenType
@@ -45,7 +45,9 @@ def get_config():
     return Settings()
 
 
-def create_token(user_id: UUID, authorise: AuthJWT) -> AuthenticationToken:
+def create_authentication_token(
+    user_id: UUID, authorise: AuthJWT
+) -> AuthenticationToken:
     """Creates an access and refresh token for the user specified by the given ID."""
     access_token = authorise.create_access_token(subject=str(user_id))
     refresh_token = authorise.create_refresh_token(subject=str(user_id))
@@ -85,10 +87,10 @@ def login(session: Session, credentials: LoginForm) -> AuthenticationToken:
             detail="Incorrect username or password",
         )
 
-    return create_token(user.id, AuthJWT())
+    return create_authentication_token(user.id, AuthJWT())
 
 
-def refresh_token(authorise: AuthJWT):
+def refresh_access_token(authorise: AuthJWT):
     """
     Refreshes a user's access token.
 
@@ -106,7 +108,7 @@ def refresh_token(authorise: AuthJWT):
     """
     authorise.jwt_refresh_token_required()
 
-    return create_token(UUID(authorise.get_jwt_subject()), authorise)
+    return create_authentication_token(UUID(authorise.get_jwt_subject()), authorise)
 
 
 def sign_up(
@@ -229,8 +231,8 @@ def reset_password(session: Session, form_data: ResetPassword) -> None:
 
 
 async def get_current_user(
-    session: Session = Depends(Database),
-    token: str = Depends(OAUTH2_SCHEME),
+    session: Session = Depends(database),
+    _: str = Depends(OAUTH2_SCHEME),
     authorise: AuthJWT = Depends(),
 ) -> User:
     """

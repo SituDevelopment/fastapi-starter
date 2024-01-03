@@ -9,7 +9,7 @@ from ..models.tokens import *
 from ..schemas.tokens import *
 
 
-def create_token(session: Session, user: UUID, type: TokenType) -> Token:
+def create_token(session: Session, user: UUID, token_type: TokenType) -> Token:
     """
     Creates a token.
 
@@ -17,13 +17,13 @@ def create_token(session: Session, user: UUID, type: TokenType) -> Token:
     ----------
         `user` (`UUID`): the ID of the user the token belongs to
 
-        `type` (`TokenType`): the type of the token
+        `token_type` (`TokenType`): the type of the token
 
     Returns
     -------
         `Token`: the created token
     """
-    token = TokenModel(token=uuid4(), user=user, type=type)
+    token = TokenModel(token=uuid4(), user=user, type=token_type)
     session.add(token)
     session.commit()
     session.refresh(token)

@@ -11,7 +11,7 @@ from .. import models, schemas
 from ..controllers.auth import get_current_user
 from ..schemas.users import User
 from .admin import Admin
-from .database import Database
+from .database import database
 
 
 class Owner(Admin):
@@ -30,17 +30,17 @@ class Owner(Admin):
 
             `return_schema` (`Type[schemas.HasOwner]`): the type of the resource to return
         """
-        self.Model = database_model
-        self.Schema = return_schema
+        self.model = database_model
+        self.schema = return_schema
 
     def __call__(
         self,
         id: UUID,
         user: User = Depends(get_current_user),
-        session: Session = Depends(Database),
+        session: Session = Depends(database),
     ) -> User:
-        db_resource: self.Model = session.query(self.Model).filter_by(id=id).one()
-        resource: self.Schema = self.Schema(**db_resource.as_dict())
+        db_resource: self.model = session.query(self.model).filter_by(id=id).one()
+        resource: self.schema = self.schema(**db_resource.as_dict())
 
         if resource.get_owner() == user.organisation:
             return user
