@@ -2,14 +2,11 @@
 
 from os import getenv
 
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi_another_jwt_auth.exceptions import AuthJWTException
 from sqlalchemy.exc import NoResultFound
-
-load_dotenv()
 
 from .routers import auth, organisations, users
 
