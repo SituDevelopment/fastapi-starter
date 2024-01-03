@@ -26,5 +26,8 @@ dynamic = ["version"]
 "Homepage" = "https://github.com/SituDevelopment/fastapi-starter"
 "Releases" = "https://github.com/SituDevelopment/fastapi-starter/releases"
 
+[tool.pylint.main]
+disable = ["too-few-public-methods", "redefined-builtin"]
+
 [tool.setuptools.dynamic]
 version = { attr = "fastapi_starter.version.__version__" }
