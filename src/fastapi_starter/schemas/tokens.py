@@ -30,10 +30,6 @@ class TokenBase(BaseModel):
 class TokenCreate(TokenBase):
     """Creation schema for tokens."""
 
-    pass
-
 
 class Token(TokenBase):
     """Return schema for tokens."""
-
-    pass

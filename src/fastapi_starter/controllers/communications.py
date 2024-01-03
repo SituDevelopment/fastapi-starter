@@ -54,6 +54,19 @@ def send_email(
 
 
 def send_welcome_email(user: User, token: str):
+    """
+    Sends a welcome email to the given user.
+
+    Parameters
+    ----------
+        `user` (`User`): the user to which to send the welcome email
+
+        `token` (`str`): the user's invitation token
+
+    Returns
+    -------
+        `requests.Response`: the response from the Mailgun API
+    """
     return send_email(
         EmailRecipient(
             email=user.username, first_name=user.first_name, last_name=user.last_name
@@ -68,6 +81,19 @@ def send_welcome_email(user: User, token: str):
 
 
 def send_password_reset_email(user: User, token: str):
+    """
+    Sends a password reset email to the given user.
+
+    Parameters
+    ----------
+        `user` (`User`): the user to which to send the password reset email
+
+        `token` (`str`): the user's password reset token
+
+    Returns
+    -------
+        `requests.Response`: the response from the Mailgun API
+    """
     return send_email(
         EmailRecipient(
             email=user.username, first_name=user.first_name, last_name=user.last_name

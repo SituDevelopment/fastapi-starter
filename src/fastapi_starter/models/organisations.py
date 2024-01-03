@@ -1,3 +1,6 @@
+"""Organisations models."""
+
+
 import enum
 from datetime import datetime
 from uuid import uuid4
@@ -10,6 +13,8 @@ __all__ = ["OrganisationModel"]
 
 
 class PermissionType(str, enum.Enum):
+    """Permission types for organisations."""
+
     ADMIN = "ADMIN"
     WRITE = "WRITE"
     READ = "READ"

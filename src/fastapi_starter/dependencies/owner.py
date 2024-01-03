@@ -1,3 +1,6 @@
+"""Grants owners permissions to resources."""
+
+
 from typing import Type
 from uuid import UUID
 

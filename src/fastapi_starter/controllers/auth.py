@@ -34,15 +34,19 @@ BACKGROUND_TASKS = BackgroundTasks()
 
 
 class Settings(BaseModel):
+    """AuthJWT configuration."""
+
     authjwt_secret_key: str = SECRET_KEY
 
 
 @AuthJWT.load_config
 def get_config():
+    """Loads the AuthJWT configuration."""
     return Settings()
 
 
 def create_token(user_id: UUID, authorise: AuthJWT) -> AuthenticationToken:
+    """Creates an access and refresh token for the user specified by the given ID."""
     access_token = authorise.create_access_token(subject=str(user_id))
     refresh_token = authorise.create_refresh_token(subject=str(user_id))
 

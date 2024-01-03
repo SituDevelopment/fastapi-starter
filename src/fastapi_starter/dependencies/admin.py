@@ -1,3 +1,6 @@
+"""Grants administrators permissions to resources."""
+
+
 from fastapi import HTTPException, status
 
 from ..controllers.organisations import get_organisation

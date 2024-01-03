@@ -4,7 +4,7 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from . import HasOwner, InDatabase, Updatable
 
@@ -12,6 +12,8 @@ __all__ = ["OrganisationCreate", "OrganisationUpdate", "Organisation"]
 
 
 class PermissionType(str, Enum):
+    """Permission types for organisations."""
+
     ADMIN = "ADMIN"
     WRITE = "WRITE"
     READ = "READ"
@@ -29,8 +31,6 @@ class OrganisationBase(BaseModel):
 class OrganisationCreate(OrganisationBase):
     """Creation schema for organisations."""
 
-    pass
-
 
 class Organisation(HasOwner, InDatabase, Updatable, OrganisationBase):
     """Return schema for organisations."""
@@ -38,8 +38,7 @@ class Organisation(HasOwner, InDatabase, Updatable, OrganisationBase):
     def get_owner(self):
         return self.id
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class OrganisationUpdate(BaseModel):

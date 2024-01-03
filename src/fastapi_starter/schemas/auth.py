@@ -7,6 +7,8 @@ from . import EmailStr
 
 
 class AuthenticationToken(BaseModel):
+    """Authentication token schema."""
+
     access_token: str
     """The access token."""
     refresh_token: str
@@ -18,6 +20,8 @@ class AuthenticationToken(BaseModel):
 
 
 class LoginForm:
+    """Login credentials schema."""
+
     def __init__(self, username: EmailStr = Form(), password: SecretStr = Form()):
         """
         Creates the below login form parameters when used as a dependency in a route.
@@ -33,11 +37,15 @@ class LoginForm:
 
 
 class ForgotPassword(BaseModel):
+    """Forgot password schema."""
+
     email: EmailStr
     """The email address of the user."""
 
 
 class ResetPassword(BaseModel):
+    """Reset password schema."""
+
     token: str
     """The token used to reset the password."""
     password: SecretStr

@@ -78,6 +78,7 @@ def forgot_password(
 def reset_password(
     form_data: ResetPassword, session: Session = Depends(Database)
 ) -> None:
+    """Resets the password for the user specified by the given token."""
     return controller.reset_password(session, form_data)
 
 
