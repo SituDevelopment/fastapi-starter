@@ -50,6 +50,7 @@ def send_email(
             "h:X-Mailgun-Variables": json.dumps(args),
             "o:tag": tags,
         },
+        timeout=5,
     )
 
 
