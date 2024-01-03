@@ -27,7 +27,12 @@ dynamic = ["version"]
 "Releases" = "https://github.com/SituDevelopment/fastapi-starter/releases"
 
 [tool.pylint.main]
-disable = ["too-few-public-methods", "redefined-builtin"]
+exclude-too-few-public-methods = ["Base", "BaseModel"]
+# Pydantic schemas and SQLAlchemy models are not designed to have public methods
+
+[tool.pylint.design]
+allowed-redefined-builtins = ["id"]
+# FastAPI dependencies require a generic resource ID parameter
 
 [tool.setuptools.dynamic]
 version = { attr = "fastapi_starter.version.__version__" }
