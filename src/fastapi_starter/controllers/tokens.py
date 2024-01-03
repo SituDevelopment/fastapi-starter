@@ -5,8 +5,8 @@ from uuid import UUID, uuid4
 
 from sqlalchemy.orm import Session
 
-from ..models.tokens import *
-from ..schemas.tokens import *
+from ..models.tokens import TokenModel
+from ..schemas.tokens import Token, TokenType
 
 
 def create_token(session: Session, user: UUID, token_type: TokenType) -> Token:

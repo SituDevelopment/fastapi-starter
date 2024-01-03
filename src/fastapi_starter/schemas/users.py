@@ -8,8 +8,6 @@ from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
 from . import EmailStr, InDatabase, Updatable
 
-__all__ = ["UserCreate", "UserUpdate", "UserPublic", "User"]
-
 
 class UserBase(BaseModel):
     """Base schema for users."""

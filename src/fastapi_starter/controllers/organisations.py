@@ -5,8 +5,8 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from ..models.organisations import *
-from ..schemas.organisations import *
+from ..models.organisations import OrganisationModel
+from ..schemas.organisations import Organisation, OrganisationCreate, OrganisationUpdate
 
 
 def create_organisation(session: Session, item: OrganisationCreate) -> Organisation:

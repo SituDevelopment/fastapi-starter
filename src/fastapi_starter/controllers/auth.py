@@ -10,12 +10,12 @@ import bcrypt
 from fastapi import BackgroundTasks, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi_another_jwt_auth import AuthJWT
-from pydantic import SecretStr
+from pydantic import BaseModel, SecretStr
 from sqlalchemy.orm import Session
 
 from ..dependencies.database import database
 from ..models.tokens import TokenModel
-from ..schemas.auth import *
+from ..schemas.auth import AuthenticationToken, ForgotPassword, LoginForm, ResetPassword
 from ..schemas.tokens import TokenType
 from ..schemas.users import User, UserCreate, UserUpdate
 from .communications import send_password_reset_email, send_welcome_email

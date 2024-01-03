@@ -10,8 +10,8 @@ from ..controllers import organisations as controller
 from ..controllers.auth import get_current_user
 from ..dependencies.database import database
 from ..dependencies.owner import Owner
-from ..models.organisations import *
-from ..schemas.organisations import *
+from ..models.organisations import OrganisationModel
+from ..schemas.organisations import Organisation, OrganisationCreate, OrganisationUpdate
 
 OWNER_DEPENDENCY = Depends(Owner(OrganisationModel, Organisation))
 """The dependency used to determine if a user owns a resource."""

@@ -8,8 +8,6 @@ from sqlalchemy import Boolean, Column, DateTime, ForeignKey, String, Uuid, null
 
 from . import Base
 
-__all__ = ["UserModel"]
-
 
 class UserModel(Base):
     """User model."""

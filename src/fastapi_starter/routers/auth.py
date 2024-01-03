@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from ..controllers import auth as controller
 from ..dependencies.database import database
-from ..schemas.auth import *
+from ..schemas.auth import AuthenticationToken, ForgotPassword, LoginForm, ResetPassword
 from ..schemas.users import User, UserCreate, UserPublic
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])

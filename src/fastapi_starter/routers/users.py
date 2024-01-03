@@ -10,7 +10,7 @@ from ..controllers import users as controller
 from ..controllers.auth import get_current_user
 from ..dependencies.database import database
 from ..dependencies.self import Self
-from ..schemas.users import *
+from ..schemas.users import UserPublic, UserUpdate
 
 router = APIRouter(
     prefix="/users",

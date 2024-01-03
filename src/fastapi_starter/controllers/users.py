@@ -5,9 +5,9 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from ..models.users import *
+from ..models.users import UserModel
 from ..schemas import EmailStr
-from ..schemas.users import *
+from ..schemas.users import User, UserCreate, UserUpdate
 
 
 def create_user(session: Session, item: UserCreate) -> User:
