@@ -6,8 +6,8 @@ from fastapi_another_jwt_auth import AuthJWT
 from sqlalchemy.orm import Session
 
 from ..controllers import auth as controller
-from ..dependencies.database import Database
-from ..schemas.auth import *
+from ..dependencies.database import database
+from ..schemas.auth import AuthenticationToken, ForgotPassword, LoginForm, ResetPassword
 from ..schemas.users import User, UserCreate, UserPublic
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
@@ -18,7 +18,7 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
     response_model=AuthenticationToken,
     status_code=status.HTTP_200_OK,
 )
-def login(credentials: LoginForm = Depends(), session: Session = Depends(Database)):
+def login(credentials: LoginForm = Depends(), session: Session = Depends(database)):
     """Authenticates the user with the provided credentials."""
     return controller.login(session, credentials)
 
@@ -30,7 +30,7 @@ def login(credentials: LoginForm = Depends(), session: Session = Depends(Databas
 )
 def refresh_token(authorise: AuthJWT = Depends()):
     """Refreshes an access token."""
-    return controller.refresh_token(authorise)
+    return controller.refresh_access_token(authorise)
 
 
 @router.post(
@@ -41,7 +41,7 @@ def refresh_token(authorise: AuthJWT = Depends()):
 def sign_up(
     user: UserCreate,
     background_tasks: BackgroundTasks,
-    session: Session = Depends(Database),
+    session: Session = Depends(database),
 ):
     """Signs up a new user."""
     return controller.sign_up(session, user, background_tasks)
@@ -51,7 +51,7 @@ def sign_up(
     "/verify-email",
     status_code=status.HTTP_200_OK,
 )
-def verify_email(token: str, session: Session = Depends(Database)):
+def verify_email(token: str, session: Session = Depends(database)):
     """Verifies a user's email address."""
     return controller.verify_email(session, token)
 
@@ -63,7 +63,7 @@ def verify_email(token: str, session: Session = Depends(Database)):
 def forgot_password(
     form_data: ForgotPassword,
     background_tasks: BackgroundTasks,
-    session: Session = Depends(Database),
+    session: Session = Depends(database),
 ):
     """
     Initiates the password reset process for the user specified by the given username.
@@ -76,8 +76,9 @@ def forgot_password(
     status_code=status.HTTP_200_OK,
 )
 def reset_password(
-    form_data: ResetPassword, session: Session = Depends(Database)
+    form_data: ResetPassword, session: Session = Depends(database)
 ) -> None:
+    """Resets the password for the user specified by the given token."""
     return controller.reset_password(session, form_data)
 
 

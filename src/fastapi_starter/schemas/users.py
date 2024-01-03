@@ -4,11 +4,9 @@
 from typing import Optional
 from uuid import UUID
 
-from pydantic import BaseModel, Field, SecretStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
 from . import EmailStr, InDatabase, Updatable
-
-__all__ = ["UserCreate", "UserUpdate", "UserPublic", "User"]
 
 
 class UserBase(BaseModel):
@@ -37,8 +35,7 @@ class UserPublic(InDatabase, Updatable, UserBase):
     verified: Optional[bool] = Field(default=None)
     """Whether the user is verified."""
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class User(UserPublic):

@@ -1,10 +1,11 @@
+"""Tokens models."""
+
+
 import enum
 
 from sqlalchemy import Column, Enum, ForeignKey, String, Uuid
 
 from . import Base
-
-__all__ = ["TokenModel"]
 
 
 class TokenType(str, enum.Enum):

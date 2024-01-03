@@ -1,11 +1,12 @@
+"""Users models."""
+
+
 from datetime import datetime
 from uuid import uuid4
 
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, String, Uuid, null
 
 from . import Base
-
-__all__ = ["UserModel"]
 
 
 class UserModel(Base):

@@ -8,9 +8,9 @@ from sqlalchemy.orm import Session
 
 from ..controllers import users as controller
 from ..controllers.auth import get_current_user
-from ..dependencies.database import Database
+from ..dependencies.database import database
 from ..dependencies.self import Self
-from ..schemas.users import *
+from ..schemas.users import UserPublic, UserUpdate
 
 router = APIRouter(
     prefix="/users",
@@ -23,7 +23,7 @@ router = APIRouter(
     "/",
     response_model=list[UserPublic],
 )
-def get_users(session: Session = Depends(Database)):
+def get_users(session: Session = Depends(database)):
     """Returns all users."""
     return controller.get_users(session)
 
@@ -33,7 +33,7 @@ def get_users(session: Session = Depends(Database)):
     dependencies=[Depends(Self)],
     response_model=UserPublic,
 )
-def get_user(id: UUID, session: Session = Depends(Database)):
+def get_user(id: UUID, session: Session = Depends(database)):
     """Returns the user specified by the given ID."""
     return controller.get_user(session, id)
 
@@ -43,7 +43,7 @@ def get_user(id: UUID, session: Session = Depends(Database)):
     dependencies=[Depends(Self)],
     response_model=UserPublic,
 )
-def update_user(id: UUID, item: UserUpdate, session: Session = Depends(Database)):
+def update_user(id: UUID, item: UserUpdate, session: Session = Depends(database)):
     """Updates the user specified by the given ID."""
     return controller.update_user(session, id, item)
 
@@ -52,6 +52,6 @@ def update_user(id: UUID, item: UserUpdate, session: Session = Depends(Database)
     "/{id}",
     dependencies=[Depends(Self)],
 )
-def delete_user(id: UUID, session: Session = Depends(Database)):
+def delete_user(id: UUID, session: Session = Depends(database)):
     """Deletes the user specified by the given ID."""
     return controller.delete_user(session, id)

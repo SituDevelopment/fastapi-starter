@@ -1,3 +1,5 @@
+"""Common Schemas and Mixins."""
+
 from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Optional
@@ -20,7 +22,6 @@ class HasOwner(ABC):
         -------
             `UUID`: the owner of the resource
         """
-        pass
 
 
 class EmailStr(PydanticEmailStr):
@@ -28,6 +29,7 @@ class EmailStr(PydanticEmailStr):
 
     @classmethod
     def validate(cls, value: PydanticEmailStr) -> PydanticEmailStr:
+        """Validate and return the email address as lowercase."""
         email = validate_email(value)[1]
         return email.lower()
 

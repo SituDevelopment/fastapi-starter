@@ -10,12 +10,12 @@ import bcrypt
 from fastapi import BackgroundTasks, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi_another_jwt_auth import AuthJWT
-from pydantic import SecretStr
+from pydantic import BaseModel, SecretStr
 from sqlalchemy.orm import Session
 
-from ..dependencies.database import Database
+from ..dependencies.database import database
 from ..models.tokens import TokenModel
-from ..schemas.auth import *
+from ..schemas.auth import AuthenticationToken, ForgotPassword, LoginForm, ResetPassword
 from ..schemas.tokens import TokenType
 from ..schemas.users import User, UserCreate, UserUpdate
 from .communications import send_password_reset_email, send_welcome_email
@@ -34,15 +34,21 @@ BACKGROUND_TASKS = BackgroundTasks()
 
 
 class Settings(BaseModel):
+    """AuthJWT configuration."""
+
     authjwt_secret_key: str = SECRET_KEY
 
 
 @AuthJWT.load_config
 def get_config():
+    """Loads the AuthJWT configuration."""
     return Settings()
 
 
-def create_token(user_id: UUID, authorise: AuthJWT) -> AuthenticationToken:
+def create_authentication_token(
+    user_id: UUID, authorise: AuthJWT
+) -> AuthenticationToken:
+    """Creates an access and refresh token for the user specified by the given ID."""
     access_token = authorise.create_access_token(subject=str(user_id))
     refresh_token = authorise.create_refresh_token(subject=str(user_id))
 
@@ -81,10 +87,10 @@ def login(session: Session, credentials: LoginForm) -> AuthenticationToken:
             detail="Incorrect username or password",
         )
 
-    return create_token(user.id, AuthJWT())
+    return create_authentication_token(user.id, AuthJWT())
 
 
-def refresh_token(authorise: AuthJWT):
+def refresh_access_token(authorise: AuthJWT):
     """
     Refreshes a user's access token.
 
@@ -102,7 +108,7 @@ def refresh_token(authorise: AuthJWT):
     """
     authorise.jwt_refresh_token_required()
 
-    return create_token(UUID(authorise.get_jwt_subject()), authorise)
+    return create_authentication_token(UUID(authorise.get_jwt_subject()), authorise)
 
 
 def sign_up(
@@ -225,8 +231,8 @@ def reset_password(session: Session, form_data: ResetPassword) -> None:
 
 
 async def get_current_user(
-    session: Session = Depends(Database),
-    token: str = Depends(OAUTH2_SCHEME),
+    session: Session = Depends(database),
+    _: str = Depends(OAUTH2_SCHEME),
     authorise: AuthJWT = Depends(),
 ) -> User:
     """

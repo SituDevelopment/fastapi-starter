@@ -1,3 +1,6 @@
+"""Configures database models."""
+
+
 from sqlalchemy import (
     CheckConstraint,
     ForeignKeyConstraint,
@@ -13,7 +16,10 @@ naming_conventions = [
     {UniqueConstraint: "UQ_%(table_name)s_%(column_0_name)s"},
     {CheckConstraint: "CK_%(table_name)s_%(constraint_name)s"},
     {
-        ForeignKeyConstraint: "FK_%(table_name)s_%(column_0_name)s_%(referred_table_name)s_%(referred_column_0_name)s"
+        ForeignKeyConstraint: (
+            "FK_%(table_name)s_%(column_0_name)s"
+            "_%(referred_table_name)s_%(referred_column_0_name)s"
+        )
     },
     {PrimaryKeyConstraint: "PK_%(table_name)s"},
 ]

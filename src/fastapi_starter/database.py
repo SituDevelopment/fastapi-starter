@@ -1,3 +1,5 @@
+"""Creates a connection to the database and a session maker."""
+
 from os import getenv
 
 from sqlalchemy import URL, create_engine
