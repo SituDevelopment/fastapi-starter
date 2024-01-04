@@ -27,7 +27,6 @@ dynamic = ["version"]
 "Releases" = "https://github.com/SituDevelopment/fastapi-starter/releases"
 
 [tool.pylint.main]
-source-roots = ["src"]
 exclude-too-few-public-methods = ["Base", "BaseModel"]
 # Pydantic schemas and SQLAlchemy models are not designed to have public methods
 
