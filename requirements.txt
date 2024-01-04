@@ -5,7 +5,7 @@ anyio==4.2.0
 astroid==3.0.2
 async-timeout==4.0.3
 attrs==23.2.0
-aws-cdk-lib==2.117.0
+aws-cdk-lib==2.118.0
 aws-cdk.asset-awscli-v1==2.2.201
 aws-cdk.asset-kubectl-v20==2.1.2
 aws-cdk.asset-node-proxy-agent-v6==2.0.1
