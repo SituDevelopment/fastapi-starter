@@ -32,7 +32,7 @@ h11==0.14.0
 idna==3.6
 importlib-resources==6.1.1
 isort==5.13.2
-jsii==1.93.0
+jsii==1.94.0
 mccabe==0.7.0
 multidict==6.0.4
 mypy-extensions==1.0.0
