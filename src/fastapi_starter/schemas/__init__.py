@@ -2,12 +2,14 @@
 
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Union
 from uuid import UUID
 
 from pydantic import BaseModel
 from pydantic import EmailStr as PydanticEmailStr
 from pydantic import Field, validate_email
+
+JSON = Union[dict[str, "JSON"], list["JSON"], str, int, float, bool, None]
 
 
 class HasOwner(ABC):
