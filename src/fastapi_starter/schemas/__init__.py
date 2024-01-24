@@ -10,7 +10,7 @@ from pydantic import EmailStr as PydanticEmailStr
 from pydantic import Field, validate_email
 
 
-JSON = Union[dict[str, 'JSON'], list['JSON'], str, int, float, bool, None]
+JSON = Union[dict[str, "JSON"], list["JSON"], str, int, float, bool, None]
 
 
 class HasOwner(ABC):
