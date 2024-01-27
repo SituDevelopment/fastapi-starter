@@ -1,6 +1,5 @@
 """Grants users permissions to themselves."""
 
-
 from uuid import UUID
 
 from ..schemas.users import User

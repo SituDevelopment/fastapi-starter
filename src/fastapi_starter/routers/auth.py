@@ -1,6 +1,5 @@
 """Authentication Router."""
 
-
 from fastapi import APIRouter, BackgroundTasks, Depends, status
 from fastapi_another_jwt_auth import AuthJWT
 from sqlalchemy.orm import Session

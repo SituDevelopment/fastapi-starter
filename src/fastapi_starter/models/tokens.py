@@ -1,6 +1,5 @@
 """Tokens models."""
 
-
 import enum
 
 from sqlalchemy import Column, Enum, ForeignKey, String, Uuid

@@ -1,6 +1,5 @@
 """Configures database models."""
 
-
 from sqlalchemy import (
     CheckConstraint,
     ForeignKeyConstraint,

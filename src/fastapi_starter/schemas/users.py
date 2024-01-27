@@ -1,6 +1,5 @@
 """Users Schemas."""
 
-
 from typing import Optional
 from uuid import UUID
 
