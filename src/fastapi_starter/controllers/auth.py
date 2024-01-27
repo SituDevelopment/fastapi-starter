@@ -1,6 +1,5 @@
 """Authentication Controller."""
 
-
 import re
 import string
 from os import getenv

@@ -1,6 +1,5 @@
 """Tokens schemas."""
 
-
 from enum import Enum
 from uuid import UUID
 

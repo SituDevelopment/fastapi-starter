@@ -1,6 +1,5 @@
 """Tokens Controller."""
 
-
 from uuid import UUID, uuid4
 
 from sqlalchemy.orm import Session

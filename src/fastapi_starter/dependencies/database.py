@@ -1,6 +1,5 @@
 """Provides a database session."""
 
-
 from typing import Generator
 
 from sqlalchemy.orm import Session
