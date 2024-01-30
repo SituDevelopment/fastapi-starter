@@ -1,30 +1,47 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0a5"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "fastapi-starter"
-description = "Extensible FastAPI application to provide consistent authentication."
-authors = [{ name = "William Sawyer", email = "william@situ.com.au" }]
-readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [
-    "bcrypt",
-    "fastapi_another_jwt_auth",
-    "mangum",
-    "PyMySQL",
-    "python-dotenv",
-    "SQLAlchemy",
-]
+dynamic = ["version"]
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+line_length = 100
+profile = "black"
+
+[tool.poetry]
+name = "fastapi-starter"
+version = "0.0.1"
+description = "Extensible FastAPI application to provide consistent authentication."
+authors = ["William Sawyer <william@situ.com.au>"]
+readme = "README.md"
+repository = "https://github.com/SituDevelopment/fastapi-starter"
 classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3.10",
 ]
-dynamic = ["version"]
 
-[project.urls]
-"Homepage" = "https://github.com/SituDevelopment/fastapi-starter"
-"Releases" = "https://github.com/SituDevelopment/fastapi-starter/releases"
+[tool.poetry.dependencies]
+python = "~=3.10.0"
+
+bcrypt = "~=4.1.2"
+fastapi_another_jwt_auth = "~=0.1.10"
+mangum = "~=0.17.0"
+PyMySQL = "~=1.1.0"
+python-dotenv = "~=1.0.1"
+SQLAlchemy = "~=2.0.25"
+
+[tool.poetry.group.dev.dependencies]
+
+black = "*"
+isort = "*"
+pylint = "*"
+pytest = "*"
 
 [tool.pylint.design]
 allowed-redefined-builtins = ["id"]
