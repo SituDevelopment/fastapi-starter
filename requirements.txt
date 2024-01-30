@@ -41,7 +41,7 @@ pathspec==0.12.1
 platformdirs==4.1.0
 publication==0.0.3
 pycparser==2.21
-pydantic==2.5.2
+pydantic==2.6.0
 pydantic-settings==2.1.0
 pydantic_core==2.14.5
 PyJWT==2.8.0
