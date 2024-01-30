@@ -2,11 +2,6 @@
 requires = ["poetry-core>=1.0.0a5"]
 build-backend = "poetry.core.masonry.api"
 
-[project]
-name = "fastapi-starter"
-requires-python = ">=3.10"
-dynamic = ["version"]
-
 [tool.black]
 line-length = 100
 
@@ -16,7 +11,7 @@ profile = "black"
 
 [tool.poetry]
 name = "fastapi-starter"
-version = "0.0.1"
+version = "0.0.3"
 description = "Extensible FastAPI application to provide consistent authentication."
 authors = ["William Sawyer <william@situ.com.au>"]
 readme = "README.md"
@@ -50,6 +45,3 @@ allowed-redefined-builtins = ["id"]
 [tool.pylint.main]
 exclude-too-few-public-methods = ["Base", "BaseModel"]
 # Pydantic schemas and SQLAlchemy models are not designed to have public methods
-
-[tool.setuptools.dynamic]
-version = { attr = "fastapi_starter.version.__version__" }
