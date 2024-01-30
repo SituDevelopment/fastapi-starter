@@ -74,9 +74,7 @@ def forgot_password(
     "/reset-password",
     status_code=status.HTTP_200_OK,
 )
-def reset_password(
-    form_data: ResetPassword, session: Session = Depends(database)
-) -> None:
+def reset_password(form_data: ResetPassword, session: Session = Depends(database)) -> None:
     """Resets the password for the user specified by the given token."""
     return controller.reset_password(session, form_data)
 

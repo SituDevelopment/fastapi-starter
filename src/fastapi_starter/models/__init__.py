@@ -26,6 +26,4 @@ naming_conventions = [
 metadata = MetaData(naming_convention=naming_conventions)
 Base = declarative_base(metadata=metadata)
 
-Base.as_dict = lambda self: {
-    c.name: getattr(self, c.name) for c in self.__table__.columns
-}
+Base.as_dict = lambda self: {c.name: getattr(self, c.name) for c in self.__table__.columns}

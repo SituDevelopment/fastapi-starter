@@ -68,9 +68,7 @@ def send_welcome_email(user: User, token: str):
         `requests.Response`: the response from the Mailgun API
     """
     return send_email(
-        EmailRecipient(
-            email=user.username, first_name=user.first_name, last_name=user.last_name
-        ),
+        EmailRecipient(email=user.username, first_name=user.first_name, last_name=user.last_name),
         "Welcome!",
         "welcome",
         ["welcome"],
@@ -95,9 +93,7 @@ def send_password_reset_email(user: User, token: str):
         `requests.Response`: the response from the Mailgun API
     """
     return send_email(
-        EmailRecipient(
-            email=user.username, first_name=user.first_name, last_name=user.last_name
-        ),
+        EmailRecipient(email=user.username, first_name=user.first_name, last_name=user.last_name),
         "Password Reset Requested",
         "password reset",
         ["password-reset"],

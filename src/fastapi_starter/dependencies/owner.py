@@ -16,9 +16,7 @@ from .database import database
 class Owner(Admin):
     """Requires the user to be a member of the organisation which owns the resource."""
 
-    def __init__(
-        self, database_model: Type[models.Base], return_schema: Type[schemas.HasOwner]
-    ):
+    def __init__(self, database_model: Type[models.Base], return_schema: Type[schemas.HasOwner]):
         """
         Initialises the Owner dependency to check for a resource of the given type in
         the given table.

@@ -25,9 +25,7 @@ def delete_organisation(session: Session, id: UUID) -> None:
 
 def get_organisation(session: Session, id: UUID) -> Organisation:
     """Returns the organisation specified by the given ID."""
-    return Organisation(
-        **session.query(OrganisationModel).filter_by(id=id).one().as_dict()
-    )
+    return Organisation(**session.query(OrganisationModel).filter_by(id=id).one().as_dict())
 
 
 def get_organisations(session: Session) -> list[Organisation]:
@@ -38,13 +36,9 @@ def get_organisations(session: Session) -> list[Organisation]:
     ]
 
 
-def update_organisation(
-    session: Session, id: UUID, item: OrganisationUpdate
-) -> Organisation:
+def update_organisation(session: Session, id: UUID, item: OrganisationUpdate) -> Organisation:
     """Updates the organisation specified by the given ID."""
-    session.query(OrganisationModel).filter_by(id=id).update(
-        item.model_dump(exclude_unset=True)
-    )
+    session.query(OrganisationModel).filter_by(id=id).update(item.model_dump(exclude_unset=True))
     session.commit()
 
     return get_organisation(session, id)

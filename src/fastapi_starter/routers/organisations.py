@@ -55,9 +55,7 @@ def create_organisation(item: OrganisationCreate, session: Session = Depends(dat
     dependencies=[OWNER_DEPENDENCY],
     response_model=Organisation,
 )
-def update_organisation(
-    id: UUID, item: OrganisationUpdate, session: Session = Depends(database)
-):
+def update_organisation(id: UUID, item: OrganisationUpdate, session: Session = Depends(database)):
     """Updates the organisation specified by the given ID."""
     return controller.update_organisation(session, id, item)
 

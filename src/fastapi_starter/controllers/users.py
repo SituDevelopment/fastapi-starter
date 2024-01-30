@@ -41,8 +41,6 @@ def get_users(session: Session) -> list[User]:
 
 def update_user(session: Session, id: UUID, item: UserUpdate) -> User:
     """Updates the user specified by the given ID."""
-    session.query(UserModel).filter_by(id=id).update(
-        item.model_dump(exclude_unset=True)
-    )
+    session.query(UserModel).filter_by(id=id).update(item.model_dump(exclude_unset=True))
     session.commit()
     return get_user(session, id)

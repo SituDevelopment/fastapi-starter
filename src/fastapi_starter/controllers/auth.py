@@ -44,9 +44,7 @@ def get_config():
     return Settings()
 
 
-def create_authentication_token(
-    user_id: UUID, authorise: AuthJWT
-) -> AuthenticationToken:
+def create_authentication_token(user_id: UUID, authorise: AuthJWT) -> AuthenticationToken:
     """Creates an access and refresh token for the user specified by the given ID."""
     access_token = authorise.create_access_token(subject=str(user_id))
     refresh_token = authorise.create_refresh_token(subject=str(user_id))
@@ -75,9 +73,7 @@ def login(session: Session, credentials: LoginForm) -> AuthenticationToken:
     -------
         `AuthenticationToken`: the access and refresh tokens
     """
-    if not (
-        user := get_user_by_username(session, credentials.username)
-    ) or not bcrypt.checkpw(
+    if not (user := get_user_by_username(session, credentials.username)) or not bcrypt.checkpw(
         credentials.password.get_secret_value().encode(),
         user.password.get_secret_value().encode(),
     ):
@@ -110,9 +106,7 @@ def refresh_access_token(authorise: AuthJWT):
     return create_authentication_token(UUID(authorise.get_jwt_subject()), authorise)
 
 
-def sign_up(
-    session: Session, user: UserCreate, background_tasks: BackgroundTasks
-) -> User:
+def sign_up(session: Session, user: UserCreate, background_tasks: BackgroundTasks) -> User:
     """
     Registers a new user.
 
@@ -137,9 +131,7 @@ def sign_up(
         )
 
     user.password = SecretStr(
-        bcrypt.hashpw(
-            user.password.get_secret_value().encode(), bcrypt.gensalt()
-        ).decode()
+        bcrypt.hashpw(user.password.get_secret_value().encode(), bcrypt.gensalt()).decode()
     )
     created_user = create_user(session, user)
     token = create_token(session, created_user.id, TokenType.EMAIL_VERIFICATION)
@@ -199,10 +191,7 @@ def reset_password(session: Session, form_data: ResetPassword) -> None:
     ----------
         `form_data` (`ResetPassword`): the reset token and the new password
     """
-    if (
-        not (token := get_token(session, form_data.token))
-        or token.type != TokenType.PASSWORD_RESET
-    ):
+    if not (token := get_token(session, form_data.token)) or token.type != TokenType.PASSWORD_RESET:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Invalid token",
