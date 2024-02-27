@@ -35,6 +35,9 @@ SQLAlchemy = "~=2.0.25"
 
 black = "*"
 isort = "*"
+
+[tool.poetry.group.test.dependencies]
+
 pylint = "*"
 pytest = "*"
 
