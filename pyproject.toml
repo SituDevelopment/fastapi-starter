@@ -22,14 +22,14 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "~=3.10.0"
+python = "^3.10.0"
 
-bcrypt = "~=4.1.2"
-fastapi_another_jwt_auth = "~=0.1.10"
-mangum = "~=0.17.0"
-PyMySQL = "~=1.1.0"
-python-dotenv = "~=1.0.1"
-SQLAlchemy = "~=2.0.25"
+bcrypt = "^4.1.2"
+fastapi_another_jwt_auth = "^0.1.10"
+mangum = "^0.17.0"
+PyMySQL = "^1.1.0"
+python-dotenv = "^1.0.1"
+SQLAlchemy = "^2.0.25"
 
 [tool.poetry.group.dev.dependencies]
 
