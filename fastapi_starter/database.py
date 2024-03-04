@@ -1,14 +1,14 @@
 """Creates a connection to the database and a session maker."""
 
-from os import getenv
+from os import environ
 
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
 
-DB_USER = getenv("DB_USER")
-DB_PASSWORD = getenv("DB_PASSWORD")
-DB_HOST = getenv("DB_HOST")
-DB_NAME = getenv("DB_NAME")
+DB_USER = environ["DB_USER"]
+DB_PASSWORD = environ["DB_PASSWORD"]
+DB_HOST = environ["DB_HOST"]
+DB_NAME = environ["DB_NAME"]
 
 url = URL.create("mysql+pymysql", DB_USER, DB_PASSWORD, DB_HOST, database=DB_NAME)
 engine = create_engine(url, pool_size=10, max_overflow=20)

@@ -2,7 +2,7 @@
 
 import re
 import string
-from os import getenv
+from os import environ
 from uuid import UUID
 
 import bcrypt
@@ -24,9 +24,8 @@ from .users import create_user, get_user, get_user_by_username, update_user
 OAUTH2_SCHEME = OAuth2PasswordBearer(tokenUrl="auth/login")
 """The OAuth2 scheme used to authenticate users."""
 
-SECRET_KEY = getenv("SECRET_KEY")
+SECRET_KEY = environ["SECRET_KEY"]
 """The secret key used to sign JWTs."""
-assert SECRET_KEY is not None
 
 BACKGROUND_TASKS = BackgroundTasks()
 """Background tasks."""

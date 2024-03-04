@@ -1,18 +1,18 @@
 """Communications Controller."""
 
 import json
-from os import getenv
+from os import environ
 
 import requests
 
 from ..schemas import EmailRecipient
 from ..schemas.users import User
 
-FRONTEND_URL = getenv("FRONTEND_URL")
-MAILGUN_API_KEY = getenv("MAILGUN_API_KEY")
-MAILGUN_DOMAIN_NAME = getenv("MAILGUN_DOMAIN_NAME")
-MAILGUN_SENDER_EMAIL = getenv("MAILGUN_SENDER_EMAIL")
-MAILGUN_SENDER_NAME = getenv("MAILGUN_SENDER_NAME")
+FRONTEND_URL = environ["FRONTEND_URL"]
+MAILGUN_API_KEY = environ["MAILGUN_API_KEY"]
+MAILGUN_DOMAIN_NAME = environ["MAILGUN_DOMAIN_NAME"]
+MAILGUN_SENDER_EMAIL = environ["MAILGUN_SENDER_EMAIL"]
+MAILGUN_SENDER_NAME = environ["MAILGUN_SENDER_NAME"]
 
 
 def send_email(

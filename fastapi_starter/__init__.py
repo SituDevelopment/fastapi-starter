@@ -1,6 +1,6 @@
 """The extensible FastAPI application."""
 
-from os import getenv
+from os import environ
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,16 +11,16 @@ from sqlalchemy.exc import NoResultFound
 from .routers import auth, organisations, users
 
 app = FastAPI(
-    debug=getenv("DEBUG") == "True",
-    title=getenv("APPLICATION_NAME"),
-    description=getenv("APPLICATION_DESCRIPTION"),
+    debug=environ["DEBUG"] == "True",
+    title=environ["APPLICATION_NAME"],
+    description=environ["APPLICATION_DESCRIPTION"],
 )
 """The API application."""
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[getenv("FRONTEND_URL")],
+    allow_origins=[environ["FRONTEND_URL"]],
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
