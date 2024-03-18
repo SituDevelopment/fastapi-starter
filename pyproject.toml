@@ -38,10 +38,11 @@ SQLAlchemy = "^2.0.25"
 
 black = "*"
 isort = "*"
+mypy = "^1.9.0"
+pylint = "*"
 
 [tool.poetry.group.test.dependencies]
 
-pylint = "*"
 pytest = "*"
 
 [tool.pylint.design]
