@@ -31,7 +31,6 @@ mangum = "^0.17.0"
 pydantic = { version = "^2.6.3", extras = ["email"] }
 PyMySQL = "^1.1.0"
 python-multipart = "^0.0.9"
-requests = "^2.31.0"
 SQLAlchemy = "^2.0.25"
 
 [tool.poetry.group.dev.dependencies]

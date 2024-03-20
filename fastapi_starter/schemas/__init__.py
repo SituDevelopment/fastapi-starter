@@ -36,17 +36,6 @@ class EmailStr(PydanticEmailStr):
         return email.lower()
 
 
-class EmailRecipient(BaseModel):
-    """Email recipient schema."""
-
-    email: EmailStr
-    """The email address of the recipient."""
-    first_name: str
-    """The first name of the recipient."""
-    last_name: str
-    """The last name of the recipient."""
-
-
 class InDatabase(BaseModel):
     """Resource which is in the database."""
 
