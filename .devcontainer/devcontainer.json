@@ -1,0 +1,6 @@
+{
+    "dockerComposeFile": "docker-compose.yaml",
+    "name": "FastAPI Starter",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}

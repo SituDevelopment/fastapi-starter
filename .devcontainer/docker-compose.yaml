@@ -1,0 +1,18 @@
+version: "3.8"
+
+name: fastapi-starter
+
+services:
+  devcontainer:
+    command: sleep infinity
+    env_file: .env
+    image: ghcr.io/situdevelopment/devcontainer-node-20-python-3.10
+    network_mode: service:database
+    volumes:
+      - ..:/workspaces/fastapi-starter:cached
+
+  database:
+    env_file: .env
+    image: mysql:latest
+    ports:
+      - "3306:3306"
